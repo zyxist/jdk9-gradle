@@ -1,0 +1,26 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+group 'com.zyxist.jdk9'
+version '0.0.1-SNAPSHOT'
+
+compileJava {
+    // should not be needed
+    options.compilerArgs += ["--module-source-path=src/main/java"]
+}
+model {
+    components {
+        main(JvmLibrarySpec) {
+            targetPlatform 'java9'
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
